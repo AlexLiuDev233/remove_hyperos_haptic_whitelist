@@ -5,3 +5,4 @@ com.kugou.android
 cn.kuwo.player
 com.miui.player
 com.luna.music
+tv.danmaku.bili

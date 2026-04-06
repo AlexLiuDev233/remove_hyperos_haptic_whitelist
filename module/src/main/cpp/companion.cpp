@@ -16,12 +16,12 @@ static void onConfigChange() {
     LOGI("trigger config update!");
 
     struct stat st {};
-    if (stat("/data/adb/hyperos_music_haptic_whitelist.txt", &st) != 0 || st.st_size == 0) {
+    if (stat("/data/adb/hyperos_music_haptic_whitelist/config.txt", &st) != 0 || st.st_size == 0) {
         LOGE("Config file empty or not found");
         return;
     }
 
-    int fd = open("/data/adb/hyperos_music_haptic_whitelist.txt", O_RDONLY);
+    int fd = open("/data/adb/hyperos_music_haptic_whitelist/config.txt", O_RDONLY);
     if (fd < 0) return;
 
     char* buffer = (char*)malloc(st.st_size + 1);
@@ -59,7 +59,7 @@ static void onCompanionLoaded() {
                 auto *event = (struct inotify_event *) ptr;
 
                 if (event->len > 0 && !(event->mask & IN_ISDIR)) {
-                    if (strcmp(event->name, "hyperos_music_haptic_whitelist.txt") == 0) {
+                    if (strcmp(event->name, "config.txt") == 0) {
                         onConfigChange();
                     }
                 }

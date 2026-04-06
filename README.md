@@ -4,7 +4,7 @@
 # 使用方法
 - 安装 [Zygisk Next](https://github.com/Dr-TSNG/ZygiskNext)
 - 安装本模块
-- 在 /data/adb/hyperos_music_haptic_whitelist.txt 中配置白名单包名 修改实时生效
+- 在 /data/adb/hyperos_music_haptic_whitelist/config.txt 中配置白名单包名 修改实时生效
 - 大功告成
 
 # 致谢

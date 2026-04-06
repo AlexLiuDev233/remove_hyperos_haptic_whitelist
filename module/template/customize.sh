@@ -64,7 +64,7 @@ mkdir "$MODPATH/lib"
 ui_print "- Extracting $ARCH libraries"
 extract "$ZIPFILE" "lib/$ARCH/lib$SONAME.so" "$MODPATH/lib" true
 
-if [ ! -f "/data/adb/hyperos_music_haptic_whitelist.txt" ]; then
+if [ ! -f "/data/adb/hyperos_music_haptic_whitelist/config.txt" ]; then
   ui_print "- Create configuration file"
-  extract "$ZIPFILE" "hyperos_music_haptic_whitelist.txt" "/data/adb"
+  extract "$ZIPFILE" "hyperos_music_haptic_whitelist/config.txt" "/data/adb"
 fi
