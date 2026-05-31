@@ -76,8 +76,11 @@ androidComponents.onVariants { variant ->
             into(moduleDir)
             from(rootProject.layout.projectDirectory.file("README.md"))
             from(layout.projectDirectory.file("template")) {
-                exclude("module.prop", "customize.sh", "post-fs-data.sh", "service.sh", "zn_modules.txt")
+                exclude("module.prop", "customize.sh", "post-fs-data.sh", "service.sh", "zn_modules.txt", "icon.png")
                 filter<FixCrLfFilter>("eol" to FixCrLfFilter.CrLf.newInstance("lf"))
+            }
+            from(layout.projectDirectory.file("template")) {
+                include("icon.png")
             }
             from(layout.projectDirectory.file("template")) {
                 include("module.prop", "zn_modules.txt")
