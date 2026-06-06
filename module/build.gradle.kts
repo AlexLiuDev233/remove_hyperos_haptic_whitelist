@@ -51,6 +51,12 @@ val abiMap = mapOf(
     "x86_64" to "x64"
 )
 
+val buildWebUiTask = tasks.register<Exec>("buildWebUi") {
+    group = "module"
+    workingDir(rootProject.layout.projectDirectory.asFile)
+    commandLine("npm", "run", "build")
+}
+
 androidComponents.onVariants { variant ->
     afterEvaluate {
         val variantLowered = variant.name.lowercase()
@@ -66,12 +72,15 @@ androidComponents.onVariants { variant ->
 
         val prepareModuleFilesTask = task<Sync>("prepareModuleFiles$variantCapped") {
             group = "module"
-            dependsOn("assemble$variantCapped")
+            dependsOn("assemble$variantCapped", buildWebUiTask)
             into(moduleDir)
             from(rootProject.layout.projectDirectory.file("README.md"))
             from(layout.projectDirectory.file("template")) {
-                exclude("module.prop", "customize.sh", "post-fs-data.sh", "service.sh", "zn_modules.txt")
+                exclude("module.prop", "customize.sh", "post-fs-data.sh", "service.sh", "zn_modules.txt", "icon.png")
                 filter<FixCrLfFilter>("eol" to FixCrLfFilter.CrLf.newInstance("lf"))
+            }
+            from(layout.projectDirectory.file("template")) {
+                include("icon.png")
             }
             from(layout.projectDirectory.file("template")) {
                 include("module.prop", "zn_modules.txt")
@@ -97,6 +106,9 @@ androidComponents.onVariants { variant ->
                 from(layout.buildDirectory.file("intermediates/stripped_native_libs/$variantLowered/strip${variantCapped}DebugSymbols/out/lib/$abi")) {
                     into("lib/$arch")
                 }
+            }
+            from(rootProject.layout.projectDirectory.dir("dist")) {
+                into("webroot")
             }
 
             doLast {

@@ -4,3 +4,4 @@ version=${versionName}
 versionCode=${versionCode}
 author=AlexLiuDev233
 description=Try hook to audioserver to kill hyperos whitelist
+webuiIcon=icon.png

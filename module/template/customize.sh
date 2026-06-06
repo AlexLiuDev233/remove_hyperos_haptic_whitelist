@@ -57,9 +57,13 @@ ui_print "- Extracting module files"
 extract "$ZIPFILE" 'module.prop'     "$MODPATH"
 extract "$ZIPFILE" 'zn_modules.txt'  "$MODPATH"
 extract "$ZIPFILE" 'uninstall.sh'    "$MODPATH"
+unzip -o "$ZIPFILE" 'bin/*' -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'webroot/*' -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'icon.png' -d "$MODPATH" >&2
 mv "$TMPDIR/sepolicy.rule" "$MODPATH"
 
 mkdir "$MODPATH/lib"
+set_perm_recursive "$MODPATH/bin" 0 0 0700 0700
 
 ui_print "- Extracting $ARCH libraries"
 extract "$ZIPFILE" "lib/$ARCH/lib$SONAME.so" "$MODPATH/lib" true

@@ -8,3 +8,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+node_modules/
+dist/
+module/release/
+module/build/
+module/.cxx/
