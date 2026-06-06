@@ -8,7 +8,7 @@
 - 大功告成
 
 # WebUI 使用
-- 使用 KernelSU / KernelSU Next 管理器安装本模块后，可以在模块详情页打开 WebUI
+- 使用 KernelSU 管理器安装本模块后，可以在模块详情页打开 WebUI
 - WebUI 会读取当前 `/data/adb/hyperos_music_haptic_whitelist.txt`，支持查看、筛选、添加、移除、批量粘贴、去重排序白名单包名
 - 点击保存时会先自动备份当前配置到 `/data/adb/remove_hyperos_haptic_whitelist/backup/`，再写回白名单文件
 - 写回后模块会沿用现有热更新机制实时生效，一般不需要重启
