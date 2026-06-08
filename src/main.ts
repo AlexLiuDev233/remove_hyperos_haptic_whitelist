@@ -1,5 +1,7 @@
 import { createApp } from 'vue';
+import { setThemeMode } from 'miuix-vue';
 import App from './App.vue';
+import 'miuix-vue/style.css';
 import './styles/main.css';
 
 async function enableEdgeToEdge(): Promise<void> {
@@ -13,5 +15,6 @@ async function enableEdgeToEdge(): Promise<void> {
   }
 }
 
+setThemeMode('system');
 enableEdgeToEdge();
 createApp(App).mount('#app');
